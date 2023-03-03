@@ -1,3 +1,4 @@
+# TODO : UPDATE THE README
 # Fyt HW OneKey
 App to modify the hardware buttons on FYT units (Atoto, Ebilaen, Ekiy, Farcar, Funrover, Idoing, Isudar, Joying, Junsun, Mekede, NaviFly, Sinosmart, T'eyes, Winca, Zhan, etcera) units.<br>
 This app does not need root!<br>
