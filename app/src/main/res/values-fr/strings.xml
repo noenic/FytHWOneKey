@@ -48,4 +48,10 @@
     <string name="video_settings">Configurer les options vidéo (depuis le bouton MODE)</string>
     <string name="voice_alias">Option de voix</string>
     <string name="xda_discussion_summary">Discutez ou posez des questions sur cette application dans le forum XDA</string>
+
+
+
+    <string name="adb_setting">Configurer l\'option ADB</string>
+
+
 </resources>

@@ -1,5 +1,6 @@
 package org.hvdw.fythwonekey;
 
+import android.preference.Preference;
 import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
@@ -54,6 +55,13 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
             getPreferenceManager().setSharedPreferencesMode(Context.MODE_PRIVATE);
             addPreferencesFromResource(R.xml.preferences);
         }
+
+        //We need to update the summary of the preference with the current value for the ABD section
+        Preference adb_ip_entry = findPreference("adb_ip_entry");
+        adb_ip_entry.setSummary(getPreferenceManager().getSharedPreferences().getString("adb_ip_entry", ""));
+        Preference adb_port_entry = findPreference("adb_port_entry");
+        adb_port_entry.setSummary(getPreferenceManager().getSharedPreferences().getString("adb_port_entry", ""));
+
 
         getActivity().registerReceiver(broadcastReceiver, intentFilter);
     }
@@ -224,6 +232,11 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         } else {
             Log.i(TAG, "updated string is " + sharedPreferences.getString(key, ""));
             toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
+            //Si la clé possède adb dans sa valeur on affiche la string dans le summary
+            if (key.contains("adb")) {
+                Preference pref = findPreference(key);
+                pref.setSummary(sharedPreferences.getString(key, ""));
+            }
         }
         if (additionalText != "") {
             toastText = toastText + additionalText;

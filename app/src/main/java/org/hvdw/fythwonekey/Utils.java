@@ -7,16 +7,21 @@ import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
 
 import android.media.AudioManager;
+import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
 /* shellExec and rootExec methods */
+import org.hvdw.fythwonekey.ADB.AdbAdapter;
+import org.hvdw.fythwonekey.ADB.AdbThread;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.NoSuchElementException;
 import java.util.concurrent.Executor;
 
 
@@ -54,6 +59,24 @@ public class Utils {
         if (callMethod.equals("automate_flow_uri")) {
             String[] parts = actionString.split("\n");
             AutomateHandler.startAutomateFlow(context, parts, buttonName);
+        }
+        if (callMethod.equals("adb_command")) {
+            sharedprefs = PreferenceManager.getDefaultSharedPreferences(context);
+            String ip = sharedprefs.getString("adb_ip_entry", "");
+            int port = Integer.parseInt(sharedprefs.getString("adb_port_entry", "5555"));
+            Log.i(TAG, "IP: " + ip + " Port: " + port);
+            AdbAdapter adb = new  AdbAdapter(context, ip, port);
+            AdbThread adbThread =new AdbThread(adb, ip, port,actionString);
+            Thread thread1 = new Thread(adbThread);
+            thread1.start();
+            try{
+                thread1.join(30000); // we wait 30 seconds for the thread to finish before we interrupt it
+                if(thread1.isAlive()){
+                    thread1.interrupt();
+                }
+            }catch (InterruptedException e){
+                Log.e(TAG, "Interrupted Exception: " + e.getMessage());
+            }
         }
     };
 

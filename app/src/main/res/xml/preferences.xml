@@ -248,6 +248,51 @@
                 android:targetPackage="org.hvdw.fythwonekey"
                 android:targetClass="org.hvdw.fythwonekey.ListInstalledApps" />
     </Preference>
+    <!-- ADB settings -->
+    <PreferenceScreen
+        android:title="@string/adb_setting"
+        android:key="adb_setting">
+<!--        On met un input text pour l'adresse IP-->
+        <EditTextPreference
+            android:key="adb_ip_entry"
+            android:title="IP adresse of the unit (NOT localhost)"
+            android:defaultValue="10.0.2.2"
+            android:summary="10.0.2.2"
+            />
+
+<!--   On met un input pour le port     -->
+        <EditTextPreference
+            android:key="adb_port_entry"
+            android:title="ADB port "
+            android:summary="5555"
+            android:defaultValue="5555" />
+<!--       On fait un intent pour lancer une activity-->
+        <Preference
+            android:key="TestABD"
+            android:title="Test ABD connection"
+            android:summary="Should send a notification">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="org.hvdw.fythwonekey"
+                android:targetClass="org.hvdw.fythwonekey.activities.AdbTest" />
+        </Preference>
+
+
+
+
+        <Preference
+            android:key="adb_explain"
+            android:title="Help"
+            android:summary='Use the adb command call to execute a command on the unit\nyou will probably  use this for shell like inputs or create files\nHere is an exemple of how it works\n\nTo execute a shell command simply use\n"shell:input keyevent 231" as the call action\n' />
+
+
+
+
+
+
+
+    </PreferenceScreen>
+
 
     <!-- About screen -->
     <PreferenceScreen
@@ -274,5 +319,6 @@
             </Preference>
         </PreferenceCategory>
     </PreferenceScreen>
+
 
 </PreferenceScreen>

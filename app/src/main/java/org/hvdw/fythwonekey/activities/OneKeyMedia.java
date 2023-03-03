@@ -20,7 +20,6 @@ public class OneKeyMedia extends Activity {
     Toast mToast;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
