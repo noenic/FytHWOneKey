@@ -116,6 +116,9 @@ public class MySettings {
     public static final String AUTOMATE_DELAYED_PRESS_TO_CALLBACK_ID = "automate_delayed_press_to_callback_id";
     public static final String AUTOMATE_LAST_BUTTON_CALL_TIME = "automate_last_button_call_time";
 
+
+    public static final String ADB_PORT_ENTRY = "adb_port_entry";
+    public static final String ADB_IP_ENTRY = "adb_ip_entry";
     /* End of all the necessary variables */
 
 }

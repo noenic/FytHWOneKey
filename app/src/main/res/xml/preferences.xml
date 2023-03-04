@@ -277,13 +277,19 @@
                 android:targetClass="org.hvdw.fythwonekey.activities.AdbTest" />
         </Preference>
 
-
+    <Preference
+            android:key="adb_developer"
+            android:title="Developer options"
+            android:summary="Go to the developer options">
+            <intent
+                android:action="com.android.settings.APPLICATION_DEVELOPMENT_SETTINGS" />
+        </Preference>
 
 
         <Preference
             android:key="adb_explain"
             android:title="Help"
-            android:summary='Use the adb command call to execute a command on the unit\nyou will probably  use this for shell like inputs or create files\nHere is an exemple of how it works\n\nTo execute a shell command simply use\n"shell:input keyevent 231" as the call action\n' />
+            android:summary='USB DEBUGGING NEED TO BE ENABLED\n\nUse the adb command call to execute a command on the unit\nyou will probably  use this for shell like inputs or create files\nHere is an exemple of how it works\n\nTo execute a shell command simply use\n"shell:input keyevent 231" as the call action\n' />
 
 
 

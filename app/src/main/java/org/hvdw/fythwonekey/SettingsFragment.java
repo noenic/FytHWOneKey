@@ -92,6 +92,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         String additionalText = "";
 
         switch (key) {
+
             case MySettings.AV_KEY_CALL_OPTION:
                 intent.setAction(MySettings.ACTION_AV_CALL_OPTION_CHANGED);
                 intent.putExtra(MySettings.EXTRA_AV_CALL_OPTION_STRING, sharedPreferences.getString(key, ""));
@@ -221,6 +222,15 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
                 intent.setAction(MySettings.ACTION_ACCOFF_SYSCALL_ENTRY_CHANGED);
                 intent.putExtra(MySettings.EXTRA_ACCOFF_SYSCALL_ENTRY_STRING, sharedPreferences.getString(key, ""));
                 break;
+
+
+            case MySettings.ADB_PORT_ENTRY:
+            case MySettings.ADB_IP_ENTRY:
+                Preference pref = findPreference(key);
+                pref.setSummary(sharedPreferences.getString(key, ""));
+                break;
+
+
             default:
                 Log.i(TAG, "Invalid setting encountered");
                 break;
@@ -232,11 +242,6 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
         } else {
             Log.i(TAG, "updated string is " + sharedPreferences.getString(key, ""));
             toastText = "You updated key \"" + key + "\" to \"" + sharedPreferences.getString(key, "") + "\"";
-            //Si la clé possède adb dans sa valeur on affiche la string dans le summary
-            if (key.contains("adb")) {
-                Preference pref = findPreference(key);
-                pref.setSummary(sharedPreferences.getString(key, ""));
-            }
         }
         if (additionalText != "") {
             toastText = toastText + additionalText;

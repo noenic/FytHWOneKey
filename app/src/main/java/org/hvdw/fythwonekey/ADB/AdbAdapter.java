@@ -30,22 +30,6 @@ public class AdbAdapter {
     private String error = null;
     private String output = null;
 
-
-    public static AdbBase64 getBase64Impl() {
-        return new AdbBase64() {
-            @Override
-            public String encodeToString(byte[] arg0) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    return Base64.getEncoder().encodeToString(arg0);
-                }
-                else {
-                    return android.util.Base64.encodeToString(arg0, android.util.Base64.NO_WRAP);
-                }
-            }
-
-        };
-    }
-
     //constructor
     public AdbAdapter(Context ctx, String ip, int port) {
         this.ctx = ctx;
@@ -101,7 +85,7 @@ public class AdbAdapter {
         // Connect the socket to the remote host
         log("Socket connecting to " + ip + ":" + port);
 
-        //On lance un socket avec un timeout de 5 secondes
+
 
 
         sock = new Socket(ip, port);

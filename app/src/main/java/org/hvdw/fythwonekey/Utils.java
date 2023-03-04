@@ -62,17 +62,18 @@ public class Utils {
         }
         if (callMethod.equals("adb_command")) {
             sharedprefs = PreferenceManager.getDefaultSharedPreferences(context);
-            String ip = sharedprefs.getString("adb_ip_entry", "");
-            int port = Integer.parseInt(sharedprefs.getString("adb_port_entry", "5555"));
+            String ip = sharedprefs.getString(MySettings.ADB_IP_ENTRY, "");
+            int port = Integer.parseInt(sharedprefs.getString(MySettings.ADB_PORT_ENTRY, "5555"));
             Log.i(TAG, "IP: " + ip + " Port: " + port);
             AdbAdapter adb = new  AdbAdapter(context, ip, port);
-            AdbThread adbThread =new AdbThread(adb, ip, port,actionString);
+            AdbThread adbThread =new AdbThread(adb,actionString);
             Thread thread1 = new Thread(adbThread);
             thread1.start();
             try{
-                thread1.join(30000); // we wait 30 seconds for the thread to finish before we interrupt it
+                thread1.join(30000); // we wait 30 seconds for the thread to finish before interrupting it
                 if(thread1.isAlive()){
                     thread1.interrupt();
+                    Log.i(TAG, "ADB command took too long, so we interrupted it");
                 }
             }catch (InterruptedException e){
                 Log.e(TAG, "Interrupted Exception: " + e.getMessage());
