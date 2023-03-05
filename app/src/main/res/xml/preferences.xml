@@ -255,9 +255,9 @@
 <!--        On met un input text pour l'adresse IP-->
         <EditTextPreference
             android:key="adb_ip_entry"
-            android:title="IP adresse of the unit (NOT localhost)"
-            android:defaultValue="10.0.2.2"
-            android:summary="10.0.2.2"
+            android:title="IP adresse of the unit"
+            android:defaultValue="127.0.0.1"
+            android:summary="127.0.0.1"
             />
 
 <!--   On met un input pour le port     -->
